@@ -1,0 +1,80 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Lectus",
+  "version": "0.1.0",
+  "identifier": "com.lectus.app",
+  "build": {
+    "beforeDevCommand": "bun run vite:dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "bun run vite:build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Lectus",
+        "width": 1100,
+        "height": 650,
+        "resizable": true,
+        "fullscreen": false,
+        "center": true,
+        "minHeight": 600,
+        "minWidth": 800
+        
+      }
+    ],
+    "security": {
+      "csp": {
+        "default-src": "'self' blob: data: filesystem: ws: wss: http: https: tauri: 'unsafe-inline' asset: https://asset.localhost",
+        "script-src": "'self' 'unsafe-eval'",
+        "connect-src": "'self' ipc: http://ipc.localhost tauri: asset: https://asset.localhost",
+        "img-src": [
+          "'self'",
+          "asset:",
+          "http://asset.localhost",
+          "blob:",
+          "data:"
+        ],
+        "style-src": "'unsafe-inline' 'self'"
+      },
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "$APPDATA/**",
+          "$APPDATA/images/**",
+          "$LOCALAPPDATA/**",
+          "$LOCALAPPDATA/images/**",
+          "$HOME/.local/share/com.lectus.app/**"
+        ]
+      }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI0QkExQTg4M0FFODNFM0YKUldRL1B1ZzZpQnE2SkhXK0o3cjlYR1JKVTBMMkZHTXNYaXA0M0lQcFc4akhHcWw0QVpFN2tydDgK",
+      "endpoints": [
+        "https://github.com/cuervolu/lectus/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  },
+  "bundle": {
+    "publisher": "Cuervolu",
+    "copyright": "Copyright © 2024",
+    "category": "Entertainment",
+    "shortDescription": "Minimalist Ebook Reader",
+    "longDescription": "Lectus is a minimalist ebook reader that allows you to read your favorite books in a distraction-free environment.",
+    "createUpdaterArtifacts": true,
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}
